@@ -34,3 +34,11 @@ class Rating(models.Model):
 
     cheese = models.ForeignKey(Cheese, on_delete=models.CASCADE)
     rating = models.IntegerField()
+
+
+class Review(models.Model):
+
+    cheese = models.ForeignKey(Cheese, on_delete=models.CASCADE)
+    review = models.TextField()
+    name = models.CharField(max_length=200)
+    created_at = models.DateField(auto_now=True)

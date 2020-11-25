@@ -5,8 +5,20 @@
 <h1>Cheeses We Have</h1>
 <ul>
 {% for cheese in cheeses %}
-    <li><a href="{% url 'cheese_detail' cheese.slug %}">{{ cheese.name }}</a>, from {{ cheese.country_of_origin }}</li>
+    <li>
+        <a href="{% url 'cheese_detail' cheese.slug %}">{{ cheese.name }}</a>, from {{ cheese.country_of_origin }}
+        <form action="{% url 'cheese_delete' cheese.slug %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete Me">
+        </form>
+    </li>
 {% endfor %}
 </ul>
-
+<hr>
+<h2>Add a cheese</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add a cheese">
+</form>
 {% endblock %}
